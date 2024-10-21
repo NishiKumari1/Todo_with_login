@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{%static 'django-icon.png'%}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Django App</title>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1082.0" data-gr-ext-installed="">
+    <div id="root">
+      <div class="todo-app">
+        <div class="flex">
+          <h1>My TODO List</h1>
+          <form method="POST" action="{% url 'remove_all' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">REMOVE ALL</button>
+          </form>
+          <div class="anca"><a href="{% url 'signout' %}" class="sign"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></div>
+        </div>
+        <form class="todo-form" method="POST" action="">
+          {% csrf_token %}
+          <input
+            placeholder="Add a todo"
+            name="title"
+            class="todo-input"
+            value=""
+          />
+          <button type="submit" class="todo-button">Add todo</button>
+        </form>
+        {% for todo in todos reversed %}
+        <div class="todo-row">
+          <div>{{ todo.title }}</div>
+          <div class="icons">
+            <a href="/delete/{{todo.id}}">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                class="delete-icon"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path
+                    d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9.414l2.828-2.829 1.415 1.415L13.414 12l2.829 2.828-1.415 1.415L12 13.414l-2.828 2.829-1.415-1.415L10.586 12 7.757 9.172l1.415-1.415L12 10.586z"
+                  ></path>
+                </g>
+              </svg>
+            </a>
+            <a href="/update/{{todo.id}}">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                version="1.2"
+                baseProfile="tiny"
+                viewBox="0 0 24 24"
+                class="edit-icon"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21.561 5.318l-2.879-2.879c-.293-.293-.677-.439-1.061-.439-.385 0-.768.146-1.061.439l-3.56 3.561h-9c-.552 0-1 .447-1 1v13c0 .553.448 1 1 1h13c.552 0 1-.447 1-1v-9l3.561-3.561c.293-.293.439-.677.439-1.061s-.146-.767-.439-1.06zm-10.061 9.354l-2.172-2.172 6.293-6.293 2.172 2.172-6.293 6.293zm-2.561-1.339l1.756 1.728-1.695-.061-.061-1.667zm7.061 5.667h-11v-11h6l-3.18 3.18c-.293.293-.478.812-.629 1.289-.16.5-.191 1.056-.191 1.47v3.061h3.061c.414 0 1.108-.1 1.571-.29.464-.19.896-.347 1.188-.64l3.18-3.07v6zm2.5-11.328l-2.172-2.172 1.293-1.293 2.171 2.172-1.292 1.293z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        {% endfor %} {% if todo %}
+        <form class="todo-form" method="POST">
+          {% csrf_token %}
+          <input
+            placeholder="Update your item"
+            type="text"
+            name="title"
+            class="todo-input edit"
+            value="{{ todo.title }}"
+          />
+          <button class="todo-button edit">Update</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
