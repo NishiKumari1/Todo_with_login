@@ -21,14 +21,14 @@
     min-height: 563px;
     background: #161a2b;
     text-align: center;
-    margin: 70px auto;
+    margin: 50px auto;
     border-radius: 15px;
-    padding-bottom: 32px;
+    padding: 20px;
     opacity: 0.8;
   }
   
-  h1 {
-    margin: 32px 0 32px 33%;
+  .heading {
+    margin: 20px 0;
     color: #fff;
     font-size: 24px;
     text-align: center;
@@ -182,4 +182,75 @@
     font-size: 30px;
     padding: 10px;
   }
+
+  .anca{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 180px;
+  }
   
+
+  /* Phone Size CSS */
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .todo-app {
+    width: 70%;
+    margin: 50px auto;
+  }
+
+  h1 {
+    margin: 20px 0;
+    font-size: 20px;
+  }
+
+  .todo-input {
+    width: 50%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .todo-button {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .todo-container {
+    flex-direction: column;
+  }
+
+  .todo-row {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .icons {
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 12px;
+    max-width: 100%;
+    margin: 16px auto;
+    padding: 8px;
+  }
+
+  .heading{
+    font-size: 20px;
+    color: white;
+  }
+
+  i.fa-solid.fa-arrow-right-from-bracket {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .anca{
+    margin-left: 50px;
+  }
+}
